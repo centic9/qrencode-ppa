@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+# -*- gmakefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+export DH_OPTIONS
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- --with-tests
+
+override_dh_auto_test:
+	dh_auto_test
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	cd tests && ./test_basic.sh
+endif
