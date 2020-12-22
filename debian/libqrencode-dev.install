@@ -1,3 +1,3 @@
-usr/include/*.h
-usr/lib/*/lib*.so
-usr/lib/*/pkgconfig/*
+usr/include/qrencode.h
+usr/lib/${DEB_HOST_MULTIARCH}/libqrencode.so
+usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/libqrencode.pc

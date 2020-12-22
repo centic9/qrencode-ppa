@@ -1,0 +1,17 @@
+diff --git a/configure.ac b/configure.ac
+index 5d3847f..30b6bed 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -155,6 +155,7 @@ CFLAGS="-Wall $CFLAGS"
+ 
+ AC_OUTPUT
+ 
++if test x$verbose = xyes; then
+ echo ""
+ echo "Options used to compile and link:"
+ echo "  CC       = $CC"
+@@ -164,3 +165,4 @@ echo "  CXX      = $CXX"
+ echo "  CXXFLAGS = $CXXFLAGS"
+ echo "  LDFLAGS  = $LDFLAGS"
+ echo ""
++fi

@@ -1,3 +1,34 @@
+qrencode (4.1.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches/0002-qrenc-string-boundary.patch: Update.
+  * debian/libqrencode4.symbols: Update.
+    (Build-Depends-Package): Add.
+  * debian/compat: Upgrade to 13.
+  * debian/control (Standards-Version): Conforms to 4.5.1.
+    (Build-Depends): Require newer debhelper, change to libsdl2-dev.
+    (Rules-Requires-Root): Add.
+  * debian/not-installed: New.
+  * debian/libqrencode-dev.install: Update.
+  * debian/libqrencode4.install: Update.
+
+ -- NIIBE Yutaka <gniibe@fsij.org>  Tue, 22 Dec 2020 14:31:03 +0900
+
+qrencode (4.0.2-2) unstable; urgency=medium
+
+  [Ondřej Nový]
+  * debian/copyright: Use https protocol in Format field.
+
+  [NIIBE Yutaka]
+  * debian/copyright: Update information by new release.
+  * debian/control (Standards-Version): Conforms 4.4.1.
+    (Multi-Arch): Add "same" for libqrencode-dev.
+    Add "foreign" for qrencode (Closes: #941739).
+  * debian/patches/0001-use-verbose-configure.patch: New.
+  * debian/patches/0002-qrenc-string-boundary.patch: New.
+
+ -- NIIBE Yutaka <gniibe@fsij.org>  Thu, 10 Oct 2019 11:06:36 +0900
+
 qrencode (4.0.2-1) unstable; urgency=medium
 
   [NIIBE Yutaka]

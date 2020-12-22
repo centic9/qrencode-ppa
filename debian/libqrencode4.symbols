@@ -1,4 +1,5 @@
 libqrencode.so.4 libqrencode4 #MINVER#
+* Build-Depends-Package: libqrencode-dev
  BitStream_append@Base 3.2.0
  BitStream_appendBytes@Base 3.2.0
  BitStream_appendNum@Base 3.2.0
@@ -71,6 +72,7 @@ libqrencode.so.4 libqrencode4 #MINVER#
 #QRinput_estimateBitsModeECI@Base 3.2.0
  QRinput_estimateBitsModeKanji@Base 3.2.0
  QRinput_estimateBitsModeNum@Base 3.2.0
+ QRinput_estimateVersion@Base 4.1.0
  QRinput_free@Base 3.2.0
  QRinput_getBitStream@Base 3.2.0
  QRinput_getByteStream@Base 3.2.0

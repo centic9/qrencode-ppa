@@ -27,11 +27,21 @@ if(HAVE_SDL)
 endif(HAVE_SDL)
 
 if(TARGET Threads::Threads)
+    if(HAVE_SYS_TIME_H)
+        add_definitions(-DHAVE_SYS_TIME_H)
+    endif()
+
+    if(HAVE_TIME_H)
+        add_definitions(-DHAVE_TIME_H)
+    endif()
+
     add_executable(prof_qrencode prof_qrencode.c)
     target_link_libraries(prof_qrencode common Threads::Threads)
 
-    add_executable(pthread_qrencode pthread_qrencode.c)
-    target_link_libraries(pthread_qrencode common Threads::Threads)
+    if(HAVE_PTHREAD_H)
+        add_executable(pthread_qrencode pthread_qrencode.c)
+        target_link_libraries(pthread_qrencode common Threads::Threads)
+    endif()
 endif()
 
 MAKE_TEST(test_bitstream)
@@ -39,7 +49,7 @@ MAKE_TEST(test_estimatebit)
 MAKE_TEST(test_split)
 
 if(TARGET ICONV::ICONV)
-    add_library(decoder 
+    add_library(decoder STATIC
         decoder.c decoder.h 
         datachunk.c datachunk.h 
         rsecc_decoder.c rsecc_decoder.h)
@@ -47,6 +57,7 @@ if(TARGET ICONV::ICONV)
 
     MAKE_TEST(test_qrinput decoder)
     MAKE_TEST(test_qrspec decoder)
+    target_compile_definitions(test_qrspec PRIVATE -DSRCDIR="${CMAKE_CURRENT_SOURCE_DIR}/")
     MAKE_TEST(test_mqrspec decoder)
     MAKE_TEST(test_qrencode decoder)
     MAKE_TEST(test_split_urls decoder)
