@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(QRencode VERSION 4.0.2 LANGUAGES C)
+project(QRencode VERSION 4.1.1 LANGUAGES C)
 
 option(WITH_TOOLS "Build utility tools"  YES )
 option(WITH_TESTS "Build tests"  NO )
@@ -15,11 +15,18 @@ if(BUILD_TESTING)
     message(DEPRECATION "use WITH_TESTS option instead BUILD_TESTING")
 endif()
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+set(CMAKE_THREAD_PREFER_PTHREAD ON)
 find_package(Threads)
 find_package(PNG)
 find_package(Iconv)
+
+if(CMAKE_USE_PTHREADS_INIT)
+    add_definitions(-DHAVE_LIBPTHREAD=1)
+    # for libqrencode.pc
+    set(LIBPTHREAD ${CMAKE_THREAD_LIBS_INIT})
+endif()
 
 ## Check for system include files
 include(CheckIncludeFile)
@@ -34,6 +41,8 @@ check_include_file(strings.h  HAVE_STRINGS_H )
 check_include_file(string.h   HAVE_STRING_H  )
 check_include_file(getopt.h   HAVE_GETOPT_H  )
 check_include_file(sys/time.h HAVE_SYS_TIME_H)
+check_include_file(time.h     HAVE_TIME_H    )
+check_include_file(pthread.h  HAVE_PTHREAD_H )
 
 check_function_exists(strdup HAVE_STRDUP)
 
@@ -73,7 +82,7 @@ if(MSVC)
     
     if(WITH_TOOLS)
         find_path(GETOPT_INCLUDE_DIR getopt.h PATH_SUFFIXES include)
-        find_library(GETOPT_LIBRARIES wingetopt PATH_SUFFIXES lib)
+        find_library(GETOPT_LIBRARIES getopt PATH_SUFFIXES lib)
         include_directories(${GETOPT_INCLUDE_DIR})
     endif(WITH_TOOLS)
 endif(MSVC)
@@ -107,17 +116,20 @@ if(BUILD_SHARED_LIBS)
 else()
     add_library(qrencode ${QRENCODE_SRCS} ${QRENCODE_HDRS})
 endif()
+if(CMAKE_USE_PTHREADS_INIT)
+    target_link_libraries(qrencode Threads::Threads)
+endif()
 
+include(GNUInstallDirs)
 set(prefix "${CMAKE_INSTALL_PREFIX}")
-set(exec_prefix "${CMAKE_INSTALL_PREFIX}/bin")
-set(libdir "${CMAKE_INSTALL_PREFIX}/lib")
-set(includedir "${CMAKE_INSTALL_PREFIX}/include")
+set(exec_prefix "${CMAKE_INSTALL_FULL_BINDIR}")
+set(libdir "${CMAKE_INSTALL_FULL_LIBDIR}")
+set(includedir "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
 set(VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
 configure_file(qrencode.1.in qrencode.1 @ONLY)
 configure_file(libqrencode.pc.in libqrencode.pc @ONLY)
 
-include(GNUInstallDirs)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qrencode.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libqrencode.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 install(FILES qrencode.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -131,7 +143,11 @@ if(WITH_TOOLS)
     add_executable(qrenc qrenc.c)
     set_target_properties(qrenc PROPERTIES OUTPUT_NAME qrencode)
 
-    target_link_libraries(qrenc qrencode PNG::PNG)
+    if(NOT WITHOUT_PNG)
+        target_link_libraries(qrenc qrencode PNG::PNG)
+    else()
+        target_link_libraries(qrenc qrencode)
+    endif()
 
     if(MSVC)
         target_link_libraries(qrenc ${GETOPT_LIBRARIES})
