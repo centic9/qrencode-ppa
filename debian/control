@@ -1,7 +1,7 @@
 Source: qrencode
 Priority: optional
 Maintainer: NIIBE Yutaka <gniibe@fsij.org>
-Build-Depends: debhelper (>= 13~), pkg-config, libpng-dev, libsdl2-dev
+Build-Depends: debhelper (>= 12), pkg-config, libpng-dev, libsdl2-dev
 Standards-Version: 4.5.1
 Section: libs
 Homepage: https://fukuchi.org/works/qrencode/index.html.en

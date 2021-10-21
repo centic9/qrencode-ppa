@@ -14,6 +14,12 @@ qrencode (4.1.1-1) unstable; urgency=medium
 
  -- NIIBE Yutaka <gniibe@fsij.org>  Tue, 22 Dec 2020 14:31:03 +0900
 
+qrencode (4.0.2-2ubuntu0~ppa1) bionic; urgency=medium
+
+  * Backport to Ubuntu Bionic.
+
+ -- Dominik Stadler (Ubuntu key) <dominik.stadler@gmx.at>  Sun, 29 Dec 2019 10:52:12 +0100
+
 qrencode (4.0.2-2) unstable; urgency=medium
 
   [Ondřej Nový]
