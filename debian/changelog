@@ -1,3 +1,9 @@
+qrencode (4.1.1-1ubuntu0~ppa2) jammy; urgency=medium
+
+  * Re-upload for Jammy
+
+ -- Dominik Stadler (Ubuntu key) <dominik.stadler@gmx.at>  Sat, 17 Sep 2022 14:47:14 +0200
+
 qrencode (4.1.1-1ubuntu0~ppa1) focal; urgency=medium
 
   * Backport latest release
