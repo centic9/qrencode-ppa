@@ -1,3 +1,9 @@
+qrencode (4.1.1-1ubuntu0~ppa3) noble; urgency=medium
+
+  * Upload for noble
+
+ -- Dominik Stadler (Ubuntu key) <dominik.stadler@gmx.at>  Fri, 11 Oct 2024 15:18:42 +0200
+
 qrencode (4.1.1-1ubuntu0~ppa2) jammy; urgency=medium
 
   * Re-upload for Jammy
