@@ -1,2 +1,3 @@
 0001-use-verbose-configure.patch
 0002-qrenc-string-boundary.patch
+0003-use-tests-cmake.patch

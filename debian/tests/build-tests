@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+cmake tests
+make C_FLAGS='-g -O2 -DWITH_TESTS -DMAJOR_VERSION=4 -DMINOR_VERSION=1 -DMICRO_VERSION=1 -DVERSION=\"4.1.1\"'

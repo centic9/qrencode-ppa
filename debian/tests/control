@@ -1,0 +1,3 @@
+Tests: build-tests, run-tests
+Depends: build-essential, @, cmake, libpng-dev
+Restrictions: allow-stderr

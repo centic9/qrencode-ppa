@@ -1,3 +1,19 @@
+qrencode (4.1.1-2) unstable; urgency=medium
+
+  [Niels Thykie]
+  * debian/control (Rules-Requires-Root): Don't require root.
+
+  [NIIBE Yutaka]
+  * debian/patches/0003-use-tests-cmake.patch: New.
+  * debian/patches/series: Update.
+  * debian/tests/control: New.
+  * debian/tests/build-tests: New.
+  * debian/tests/run-tests: New.
+  * debian/compat: Remove.
+  * debian/control (Build-Depends): Require debhelper-compat = 13.
+
+ -- NIIBE Yutaka <gniibe@fsij.org>  Fri, 29 Nov 2024 16:33:23 +0900
+
 qrencode (4.1.1-1) unstable; urgency=medium
 
   * New upstream release.
