@@ -1,3 +1,9 @@
+qrencode (4.1.1-2ubuntu0~ppa1) noble; urgency=medium
+
+  * Backport to Noble
+
+ -- Dominik Stadler (Ubuntu key) <dominik.stadler@gmx.at>  Fri, 01 Aug 2025 21:12:55 +0200
+
 qrencode (4.1.1-2) unstable; urgency=medium
 
   [Niels Thykie]
