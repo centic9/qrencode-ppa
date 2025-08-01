@@ -1,3 +1,9 @@
+qrencode (4.1.1-2ubuntu0~ppa2) noble; urgency=medium
+
+  * Adjust version of debhelper, requires 13 for dh_install
+
+ -- Dominik Stadler (Ubuntu key) <dominik.stadler@gmx.at>  Fri, 01 Aug 2025 22:53:16 +0200
+
 qrencode (4.1.1-2ubuntu0~ppa1) noble; urgency=medium
 
   * Backport to Noble
